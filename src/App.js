@@ -31,7 +31,6 @@ class App extends Component {
       previousMonth: undefined,
       showExpenseForm: false
     };
-
   }
 
   componentDidMount() {
@@ -56,14 +55,14 @@ class App extends Component {
     });
   }
 
-  signedInChanged = (signedIn) => {
+  signedInChanged(signedIn) {
     this.setState({ signedIn: signedIn });
     if (this.state.signedIn) {
       this.load();
     }
   }
 
-  handleExpenseSubmit = () => {
+  handleExpenseSubmit() {
     this.setState({ processing: true, showExpenseForm: false });
     const submitAction = (this.state.expense.id
       ? this.update
@@ -83,13 +82,13 @@ class App extends Component {
     );
   }
 
-  handleExpenseChange = (attribute, value) => {
+  handleExpenseChange(attribute, value) {
     this.setState({
       expense: Object.assign({}, this.state.expense, { [attribute]: value })
     });
   }
 
-  handleExpenseDelete = (expense) => {
+  handleExpenseDelete(expense) {
     this.setState({ processing: true, showExpenseForm: false });
     const expenseRow = expense.id.substring(10);
     window.gapi.client.sheets.spreadsheets
@@ -123,11 +122,11 @@ class App extends Component {
       );
   }
 
-  handleExpenseSelect = (expense) => {
+  handleExpenseSelect(expense) {
     this.setState({ expense: expense, showExpenseForm: true });
   }
 
-  handleExpenseCancel = () => {
+  handleExpenseCancel() {
     this.setState({ showExpenseForm: false });
   }
 
